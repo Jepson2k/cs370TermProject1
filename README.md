@@ -6,11 +6,11 @@ Welcome to the respository for Team 22's term project. In this respository there
 
 # Usage
 
-To build our project from the command line: <br/>
+To build/compile and run our project from the command line: <br/>
 <br/>
 Within the project directory: <br/>
-`$ mvn package` <br/>
-`$ java -cp target/cs370TermProject1-1.0-SNAPSHOT-jar-with-dependencies.jar RestfulServer` <br/>
+To build/compile: `$ mvn package` <br/>
+To run after building/compiling: `$ java -cp target/cs370TermProject1-1.0-SNAPSHOT-jar-with-dependencies.jar RestfulServer` <br/>
 <br/>
 Using Docker:
 
