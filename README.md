@@ -7,12 +7,14 @@ Welcome to the respository for Team 22's term project. In this respository there
 # Usage
 
 To build/compile and run our project from the command line: <br/>
-<br/>
 Within the project directory: <br/>
-To build/compile: `$ mvn package` <br/>
-To run after building/compiling: `$ java -cp target/cs370TermProject1-1.0-SNAPSHOT-jar-with-dependencies.jar RestfulServer` <br/>
+-To build/compile: `$ mvn package` <br/>
+-To run after building/compiling: `$ java -cp target/cs370TermProject1-1.0-SNAPSHOT-jar-with-dependencies.jar RestfulServer` <br/>
 <br/>
-Using Docker:
-
 
 # Docker
+
+Within the project directory:<br/>
+First, check that the vm is up to date then: <br/>
+-Build the image with: `docker build -t team22 .` <br/>
+-Start the container with: `docker container run team22` <br/>
