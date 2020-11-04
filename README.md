@@ -15,7 +15,6 @@ Within the project directory: <br/>
 # Docker
 
 Within the project directory:<br/>
-First, check that the vm is up to date then: <br/>
 -Build the image with: `$ docker build -t team22 .` <br/>
 -Start the container with: `$ docker container run team22` <br/>
 </br>
