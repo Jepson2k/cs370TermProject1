@@ -16,5 +16,9 @@ Within the project directory: <br/>
 
 Within the project directory:<br/>
 First, check that the vm is up to date then: <br/>
--Build the image with: `docker build -t team22 .` <br/>
--Start the container with: `docker container run team22` <br/>
+-Build the image with: `$ docker build -t team22 .` <br/>
+-Start the container with: `$ docker container run team22` <br/>
+</br>
+
+To port forward to the container: <br/>
+`$ docker run --publish 8080:8080 team22`
