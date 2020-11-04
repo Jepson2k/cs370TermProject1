@@ -21,9 +21,12 @@ public class RestfulServer{
 
     private void processRestfulApiRequests(){
         Spark.get("/", this::echoRequest);
-        Spark.post("/", (req, res) ->{
-            return req.body();
-        });
+        Spark.post("/", this::RestfulApiRequestPost);
+    }
+
+    private String RestfulApiRequestPost(Request req, Response res){
+        System.out.println(req.body());
+        return req.body();
     }
 
     private String echoRequest(Request request, Response response){
