@@ -30,7 +30,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.RestfulServer.RestfulServer</mainClass>
+                            <mainClass>RestfulServer</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
