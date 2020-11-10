@@ -14,4 +14,7 @@ docker build -t team22 .
 #Run the container with the name team22 and forward incoming traffic from 8080 to the
 # containers port 8080 using the build file team 22
 # -it adds an interactive terminal 
-docker run -it --name=team22 -p 8080:8080 team22
+# -d makes it detached
+docker run -d --name=team22 -p 8080:8080 team22
+
+docker logs -f team22
