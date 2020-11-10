@@ -11,6 +11,6 @@ docker rm team22
 docker build -t team22
 
 # Ways to run it
-docker run -it --name=team22 team22
+docker run --publish 8080:8080 -it --name=team22 team22
 #docker container run team22
 #docker run --publish 8080:8080 team22
