@@ -3,6 +3,12 @@ FROM alpine/git:latest AS clone
 RUN mkdir -p /clone
 WORKDIR /clone
 RUN git clone https://github.com/tommybean/cs370TermProject1.git
+# This is I guess a strategy to get it to skip using cache for the next command
+WORKDIR /clone/cs370TermProject1
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+RUN git fetch --all
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+RUN git reset --hard origin/master
 
 # Second we want to get a maven base
 FROM maven:3.6.3-jdk-11 AS build
