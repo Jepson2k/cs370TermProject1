@@ -1,5 +1,5 @@
 # First we need to create a docker layer working directory that will clone and store the repo
-FROM alpine/git as clone
+FROM alpine/git:latest AS clone
 RUN mkdir -p /clone
 WORKDIR /clone
 RUN git clone https://github.com/tommybean/cs370TermProject1.git
@@ -12,13 +12,20 @@ WORKDIR /code
 # Copy the Restful API Project Contents into the Restful folder
 COPY --from=clone /clone/cs370TermProject1/src /code/Restful/src
 COPY --from=clone /clone/cs370TermProject1/pom.xml /code/Restful/pom.xml
-# Copy the Backend API Project Conects into the Backend folder
-#COPY --from=clone /clone/cs370TermProject1/src /code/Backend/src
-#COPY --from=clone /clone/cs370TermProject1/pom.xml /code/Backend/pom.xml
+WORKDIR /code/Restful
 RUN mvn dependency:resolve
 RUN mvn verify
 RUN mvn clean
 RUN mvn package
+# Copy the Backend API Project Conects into the Backend folder
+# COPY --from=clone /clone/cs370TermProject1/src /code/Backend/src
+# COPY --from=clone /clone/cs370TermProject1/pom.xml /code/Backend/pom.xml
+# WORKDIR /code/Backend
+# RUN mvn dependency:resolve
+# RUN mvn verify
+# RUN mvn clean
+# RUN mvn package
+
 
 # Now we want to run the RESTful API in an openjdk
 # If we are changing the project's name we can add an argument to the docker file to specify that:
