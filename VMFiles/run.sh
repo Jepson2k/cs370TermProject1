@@ -9,7 +9,7 @@ cd ~/cs370TermProject1
 docker ps -q --filter "name=team22" | grep -q . && docker stop team22 && docker rm -fv team22
 
 #We now need to build the container and tag the build with team 22
-docker build -t team22
+docker build -t team22 .
 
 #Run the container with the name team22 and forward incoming traffic from 8080 to the
 # containers port 8080 using the build file team 22
