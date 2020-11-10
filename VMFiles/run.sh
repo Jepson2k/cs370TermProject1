@@ -6,7 +6,7 @@
 cd ~/cs370TermProject1
 
 #Filter the docker process list and if found then stop the container and remove it
-docker ps -q --filter "name=team22" | grep -q . && docker stop team22 && docker rm -fv team22
+docker rm -fv team22
 
 #We now need to build the container and tag the build with team 22
 docker build -t team22 .
