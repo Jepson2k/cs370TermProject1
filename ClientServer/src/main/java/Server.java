@@ -31,16 +31,20 @@ public class Server{
     }
 
     private void sendRequest(String password){
-        java.net.URL backEnd = new java.net.URL("http://BackendServer:8080/");
-        HttpURLConnection connection = (HttpURLConnection) backEnd.openConnection();
-        connection.setRequestMethod("GET");
-        String toSend = "";
-        toSend = toSend + (URLEncoder.encode("password", "UTF-8")) + "=" + (URLEncoder.encode(password, "UTF-8")) + "&";
-        connection.setDoOutput(true);
-        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
-        out.writeBytes(toSend);
-        out.flush();
-        out.close();
+        try {
+            java.net.URL backEnd = new java.net.URL("http://BackendServer:8080/");
+            HttpURLConnection connection = (HttpURLConnection) backEnd.openConnection();
+            connection.setRequestMethod("GET");
+            String toSend = "";
+            toSend = toSend + (URLEncoder.encode("password", "UTF-8")) + "=" + (URLEncoder.encode(password, "UTF-8")) + "&";
+            connection.setDoOutput(true);
+            DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+            out.writeBytes(toSend);
+            out.flush();
+            out.close();
+        }
+        catch (Exception bad){
+        }
     }
 
     private String RestfulApiRequestPost(Request req, Response res){
