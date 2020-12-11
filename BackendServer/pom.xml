@@ -30,7 +30,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>BackendServer</mainClass>
+                            <mainClass>Server</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
