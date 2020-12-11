@@ -5,11 +5,11 @@ import spark.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RestfulServer{
+public class Server{
 
-    private final Logger log = LoggerFactory.getLogger(RestfulServer.class);
+    private final Logger log = LoggerFactory.getLogger(Server.class);
 
-    public RestfulServer(){
+    public Server(){
         this.configureRestfulApiServer();
         this.processRestfulApiRequests();
     }
@@ -63,6 +63,6 @@ public class RestfulServer{
     }
 
     public static void main(String[] programArgs){
-        RestfulServer restfulServer = new RestfulServer(); //Never returns!
+        Server restfulServer = new Server(); //Never returns!
     }
 }
