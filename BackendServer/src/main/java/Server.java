@@ -23,7 +23,7 @@ public class Server{
     }
 
     private void processRestfulApiRequests(){
-        Spark.get("/", this::echoRequest);
+        Spark.get("/", (request, response) -> passwordStrength(request.body()));
         Spark.post("/", this::RestfulApiRequestPost);
     }
 
@@ -70,9 +70,9 @@ public class Server{
         int length = password.length();
         float[] arrayOfEntropy = shannonEntropy(password, length);
 
-        System.out.printf("%.2f %.2f %.2f", arrayOfEntropy[0], arrayOfEntropy[1], arrayOfEntropy[2]);
-
-        return "Are you winning son?";
+        return String.format("Simple Shannon Entropy: %.2f" + "\n" +
+                "Entropy - Randomly Generated: %.2f" + "\n" +
+                "Entropy - User Generated: %.2f" + "\n", arrayOfEntropy[0], arrayOfEntropy[1], arrayOfEntropy[2]);
     }
 
     private float[] shannonEntropy(String password, int passwordLength) {
