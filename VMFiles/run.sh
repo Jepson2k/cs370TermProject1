@@ -24,7 +24,7 @@ docker build -t backendserver .
 # containers port 8080 using the build file team 22
 # -it adds an interactive terminal 
 # -d makes it detached
-docker run -d --name=backendserver --network YourMom -p 8080:8080 backendserver
+docker run -d --name=backendserver --network YourMom backendserver
 
 # This is called a shebang -> hashtag!/bin/sh
 # This is called a bashism -> hashtag!/bin/bash
@@ -41,4 +41,4 @@ docker build -t clientserver .
 # containers port 8080 using the build file team 22
 # -it adds an interactive terminal 
 # -d makes it detached
-docker run -it --name=clientserver --network YourMom -p 8080:8080 clientserver
+docker run -it --name=clientserver --network YourMom clientserver
