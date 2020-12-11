@@ -31,5 +31,5 @@ FROM openjdk:11-jre
 RUN mkdir -p /ClientServer
 WORKDIR /ClientServer
 COPY --from=build /ClientServer/target/ClientServer-1.0-SNAPSHOT-jar-with-dependencies.jar /ClientServer/Server.jar
-EXPOSE 9000
+EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "/ClientServer/Server.jar"]
