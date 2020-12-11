@@ -5,12 +5,18 @@ import spark.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.util.Scanner;
+
 public class Server{
 
     private final Logger log = LoggerFactory.getLogger(Server.class);
 
-    public Server(){
+    public Server(String password){
         this.configureRestfulApiServer();
+        this.sendRequest(password);
         this.processRestfulApiRequests();
     }
 
@@ -22,6 +28,23 @@ public class Server{
     private void processRestfulApiRequests(){
         Spark.get("/", this::echoRequest);
         Spark.post("/", this::RestfulApiRequestPost);
+    }
+
+    private void sendRequest(String password){
+        try {
+            java.net.URL backEnd = new java.net.URL("http://BackendServer:8080/");
+            HttpURLConnection connection = (HttpURLConnection) backEnd.openConnection();
+            connection.setRequestMethod("GET");
+            String toSend = "";
+            toSend = toSend + (URLEncoder.encode("password", "UTF-8")) + "=" + (URLEncoder.encode(password, "UTF-8")) + "&";
+            connection.setDoOutput(true);
+            DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+            out.writeBytes(toSend);
+            out.flush();
+            out.close();
+        }
+        catch (Exception bad){
+        }
     }
 
     private String RestfulApiRequestPost(Request req, Response res){
@@ -63,6 +86,9 @@ public class Server{
     }
 
     public static void main(String[] programArgs){
-        Server restfulServer = new Server(); //Never returns!
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Enter Password:");
+        String password = userInput.nextLine();
+        Server restfulServer = new Server(password); //Never returns!
     }
 }
