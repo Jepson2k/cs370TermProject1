@@ -2,7 +2,7 @@
 FROM alpine/git:latest AS clone
 RUN mkdir -p /clone
 WORKDIR /clone
-RUN git clone https://github.com/tommybean/cs370TermProject1.git
+RUN git clone https://github.com/jepson2k/cs370TermProject1.git
 # This is I guess a strategy to get it to skip using cache for the next command
 WORKDIR /clone/cs370TermProject1
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
