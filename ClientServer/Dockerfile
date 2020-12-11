@@ -30,6 +30,6 @@ RUN mvn package
 FROM openjdk:11-jre
 RUN mkdir -p /ClientServer
 WORKDIR /ClientServer
-COPY --from=build /code/ClientServer/target/ClientServer-1.0-SNAPSHOT-jar-with-dependencies.jar /ClientServer/Server.jar
+COPY --from=build /ClientServer/target/ClientServer-1.0-SNAPSHOT-jar-with-dependencies.jar /ClientServer/Server.jar
 EXPOSE 8080:8081
 ENTRYPOINT ["java", "-jar", "/ClientServer/Server.jar"]
