@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: team22
+  labels:
+    app: team22
+spec:
+  containers:
+  - name: backendserver
+    image: ~/cs370TermProject1/BackendServer/backendserver:latest
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 8080
+  - name: clientserver
+    image: ~/cs370TermProject1/ClientServer/clientserver:latest
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 9000
