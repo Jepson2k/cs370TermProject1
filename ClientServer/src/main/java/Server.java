@@ -34,7 +34,7 @@ public class Server{
 
     private void sendRequest(String password){
         try {
-            java.net.URL backEnd = new java.net.URL("http://localhost:8080/");
+            java.net.URL backEnd = new java.net.URL("http://backendserver:8080/");
             HttpURLConnection connection = (HttpURLConnection) backEnd.openConnection();
             connection.setRequestMethod("POST");
             String toSend = password;
