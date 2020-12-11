@@ -12,33 +12,16 @@ RUN git reset --hard origin/master
 
 # Second we want to get a maven base
 FROM maven:3.6.3-jdk-11 AS build
-RUN mkdir -p /code/ClientServer
-RUN mkdir -p /code/Backend
-WORKDIR /code
+RUN mkdir -p /ClientServer
+WORKDIR /ClientServer
 # Copy the Restful API Project Contents into the Restful folder
-COPY --from=clone /clone/cs370TermProject1/ClientServer/src /code/ClientServer/src
-COPY --from=clone /clone/cs370TermProject1/ClientServer/pom.xml /code/ClientServer/pom.xml
-WORKDIR /code/ClientServer
+COPY --from=clone /clone/cs370TermProject1/ClientServer/src /ClientServer/src
+COPY --from=clone /clone/cs370TermProject1/ClientServer/pom.xml /ClientServer/pom.xml
+WORKDIR /ClientServer
 RUN mvn dependency:resolve
 RUN mvn verify
 RUN mvn clean
 RUN mvn package
-# Copy the Backend API Project Conects into the Backend folder
-COPY --from=clone /clone/cs370TermProject1/BackendServer/src /code/BackendServer/src
-COPY --from=clone /clone/cs370TermProject1/BackendServer/pom.xml /code/BackendServer/pom.xml
-WORKDIR /code/Backend
-RUN mvn dependency:resolve
-RUN mvn verify
-RUN mvn clean
-RUN mvn package
-
-# Now we create the Backend openjdk
-FROM openjdk:11-jre
-RUN mkdir -p /BackendServer
-WORKDIR /BackendServer
-COPY --from=build /code/Backend/target/BackendServer-1.0-SNAPSHOT-jar-with-dependencies.jar /BackendServer/Server.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/BackendServer/Server.jar"]
 
 # Now we want to run the RESTful API in an openjdk
 # If we are changing the project's name we can add an argument to the docker file to specify that:
