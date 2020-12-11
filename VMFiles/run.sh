@@ -6,6 +6,7 @@
 cd ~/cs370TermProject1/
 
 #Filter the docker process list and if found then stop the container and remove it
+docker network rm YourMom
 docker network create --driver bridge YourMom
 
 # This is called a shebang -> hashtag!/bin/sh
