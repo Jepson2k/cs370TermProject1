@@ -23,7 +23,7 @@ public class Server{
     }
 
     private void configureRestfulApiServer(){
-        Spark.port(8081);
+        Spark.port(9000);
         System.out.println("Server configured to listen on port 8081");
     }
 
@@ -34,7 +34,7 @@ public class Server{
 
     private void sendRequest(String password){
         try {
-            java.net.URL backEnd = new java.net.URL("http://backendserver:8080/");
+            java.net.URL backEnd = new java.net.URL("http://backendserver:8000/");
             HttpURLConnection connection = (HttpURLConnection) backEnd.openConnection();
             connection.setRequestMethod("POST");
             String toSend = password;

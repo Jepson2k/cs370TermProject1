@@ -28,5 +28,5 @@ FROM openjdk:11-jre
 RUN mkdir -p /BackendServer
 WORKDIR /BackendServer
 COPY --from=build /BackendServer/target/BackendServer-1.0-SNAPSHOT-jar-with-dependencies.jar /BackendServer/Server.jar
-EXPOSE 8080
+EXPOSE 8000
 ENTRYPOINT ["java", "-jar", "/BackendServer/Server.jar"]
