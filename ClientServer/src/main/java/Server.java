@@ -5,7 +5,9 @@ import spark.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URLEncoder;
 import java.util.Scanner;
@@ -16,13 +18,13 @@ public class Server{
 
     public Server(String password){
         this.configureRestfulApiServer();
-        this.sendRequest(password);
         this.processRestfulApiRequests();
+        this.sendRequest(password);
     }
 
     private void configureRestfulApiServer(){
-        Spark.port(8080);
-        System.out.println("Server configured to listen on port 8080");
+        Spark.port(8081);
+        System.out.println("Server configured to listen on port 8081");
     }
 
     private void processRestfulApiRequests(){
@@ -32,18 +34,28 @@ public class Server{
 
     private void sendRequest(String password){
         try {
-            java.net.URL backEnd = new java.net.URL("http://BackendServer:8080/");
+            java.net.URL backEnd = new java.net.URL("http://localhost:8080/");
             HttpURLConnection connection = (HttpURLConnection) backEnd.openConnection();
-            connection.setRequestMethod("GET");
-            String toSend = "";
-            toSend = toSend + (URLEncoder.encode("password", "UTF-8")) + "=" + (URLEncoder.encode(password, "UTF-8")) + "&";
+            connection.setRequestMethod("POST");
+            String toSend = password;
             connection.setDoOutput(true);
             DataOutputStream out = new DataOutputStream(connection.getOutputStream());
             out.writeBytes(toSend);
             out.flush();
             out.close();
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String reader;
+            StringBuffer response = new StringBuffer();
+            while ((reader = in.readLine()) != null){
+                response.append(reader);
+                response.append(" ");
+            }
+            in.close();
+            connection.disconnect();
+            System.out.println(response);
         }
         catch (Exception bad){
+            System.out.println("bad");
         }
     }
 

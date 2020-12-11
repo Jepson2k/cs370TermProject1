@@ -23,13 +23,18 @@ public class Server{
     }
 
     private void processRestfulApiRequests(){
-        Spark.get("/", (request, response) -> passwordStrength(request.body()));
+        Spark.get("/", this::RestfulApiRequestGet);//(request, response) -> passwordStrength(request.body()));
         Spark.post("/", this::RestfulApiRequestPost);
+    }
+
+    private String RestfulApiRequestGet(Request req, Response res){
+        System.out.println(passwordStrength(req.body()));
+        return passwordStrength(req.body());
     }
 
     private String RestfulApiRequestPost(Request req, Response res){
         System.out.println(req.body());
-        return req.body();
+        return passwordStrength(req.body());
     }
 
     private String echoRequest(Request request, Response response){
