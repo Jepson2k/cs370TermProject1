@@ -8,12 +8,12 @@ metadata:
 spec:
   containers:
   - name: backendserver
-    image: ~/cs370TermProject1/BackendServer/backendserver:latest
+    image: jepson2k/backendserver:latest
     imagePullPolicy: Always
     ports:
     - containerPort: 8000
   - name: clientserver
-    image: ~/cs370TermProject1/ClientServer/clientserver:latest
+    image: jepson2k/clientserver:latest
     imagePullPolicy: Always
     ports:
     - containerPort: 9000
